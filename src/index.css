@@ -1,0 +1,293 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --tg-bg: #f8fafc;
+    --tg-text: #0f172a;
+    --tg-hint: #64748b;
+    --tg-button: #10b981;
+    --tg-button-text: #ffffff;
+    --tg-link: #0d9488;
+    --tg-section-bg: #ffffff;
+    --tg-secondary-bg: #f1f5f9;
+    --tg-is-dark: 0;
+  }
+
+  html, body, #root {
+    min-height: 100%;
+    background: var(--tg-bg);
+    color: var(--tg-text);
+  }
+
+  html {
+    /* Telegram отдаёт реальную высоту через --tg-viewport-height, когда доступна */
+    --app-height: 100dvh;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Безопасные зоны (вырез, системные жесты, нижняя панель Telegram) */
+  :root {
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+  }
+
+  button, input {
+    font: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid #5dffea;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* In dark Telegram theme, nudge the slate text utilities to readable colors */
+  [data-tg-theme='dark'] .text-slate-900 { color: var(--tg-text); }
+  [data-tg-theme='dark'] .text-slate-800 { color: color-mix(in srgb, var(--tg-text) 88%, transparent); }
+  [data-tg-theme='dark'] .text-slate-700 { color: color-mix(in srgb, var(--tg-text) 78%, transparent); }
+  [data-tg-theme='dark'] .text-slate-500 { color: var(--tg-hint); }
+  [data-tg-theme='dark'] .text-slate-400 { color: var(--tg-hint); }
+
+  [data-tg-theme='dark'] .bg-white { background-color: var(--tg-section-bg); }
+  [data-tg-theme='dark'] .bg-slate-100 { background-color: var(--tg-secondary-bg); }
+  [data-tg-theme='dark'] .border-slate-200 { border-color: color-mix(in srgb, var(--tg-text) 12%, transparent); }
+  [data-tg-theme='dark'] .border-slate-100 { border-color: color-mix(in srgb, var(--tg-text) 8%, transparent); }
+  [data-tg-theme='dark'] .bg-slate-50 { background-color: color-mix(in srgb, var(--tg-secondary-bg) 60%, var(--tg-section-bg)); }
+}
+
+@layer components {
+  .neon-shell {
+    background:
+      radial-gradient(circle at 12% 0%, rgba(24, 235, 218, 0.2), transparent 34%),
+      radial-gradient(circle at 92% 18%, rgba(255, 134, 63, 0.2), transparent 32%),
+      linear-gradient(145deg, #10021e 0%, #24103e 48%, #071b2b 100%);
+    color: #fff8ff;
+  }
+
+  .neon-panel {
+    background: linear-gradient(145deg, rgba(48, 20, 78, 0.92), rgba(12, 24, 48, 0.95));
+    border: 1px solid rgba(24, 235, 218, 0.48);
+    box-shadow: 0 0 0 1px rgba(255, 142, 77, 0.12) inset, 0 0 26px rgba(24, 235, 218, 0.18);
+  }
+
+  .neon-button {
+    background: linear-gradient(105deg, #15e5d4 0%, #118bd3 48%, #ff8a4c 100%);
+    border: 1px solid rgba(129, 255, 242, 0.82);
+    color: #ffffff;
+    box-shadow: 0 0 16px rgba(24, 235, 218, 0.5), 0 7px 20px rgba(31, 4, 59, 0.56);
+  }
+
+  .neon-button:hover { filter: brightness(1.12); box-shadow: 0 0 24px rgba(24, 235, 218, 0.72), 0 7px 20px rgba(31, 4, 59, 0.56); }
+
+  .neon-button-secondary {
+    background: rgba(48, 20, 78, 0.82);
+    border: 1px solid rgba(24, 235, 218, 0.32);
+    color: #b9fff6;
+  }
+
+  .neon-key {
+    background: linear-gradient(145deg, rgba(55, 28, 91, 0.96), rgba(11, 44, 72, 0.98));
+    border: 1px solid rgba(24, 235, 218, 0.55);
+    color: #f8fdff;
+    box-shadow: 0 0 12px rgba(0, 182, 255, 0.18), inset 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .neon-key-muted { background: rgba(31, 20, 53, 0.78); color: #665581; border: 1px solid rgba(117, 87, 153, 0.3); }
+  .neon-input { background: rgba(16, 9, 35, 0.92); border: 1px solid rgba(24, 235, 218, 0.45); color: #fff8ff; }
+  .neon-input::placeholder { color: #55718f; }
+  .neon-input:focus { border-color: #4dffef; box-shadow: 0 0 0 3px rgba(0, 232, 255, 0.14), 0 0 18px rgba(0, 232, 255, 0.22); }
+
+  .neon-title {
+    color: #fff8ff;
+    text-shadow: 0 0 10px rgba(24, 235, 218, 0.65), 0 0 26px rgba(255, 117, 69, 0.45);
+  }
+
+  .neon-accent { color: #5dffea; text-shadow: 0 0 12px rgba(24, 235, 218, 0.65); }
+  .neon-muted { color: #b4a0c8; }
+  .neon-orange { color: #ffab63; text-shadow: 0 0 12px rgba(255, 117, 69, 0.6); }
+
+  .legend-bull { color: #ff8fa3; text-shadow: 0 0 6px rgba(255, 84, 130, 0.7); }
+  .legend-cow { color: #ffe08a; text-shadow: 0 0 6px rgba(255, 211, 78, 0.7); }
+
+  /* Текст на «панели»: белый в неоне, тёмный в светлых темах */
+  .on-panel { color: #ffffff; }
+  .score-value { color: #fde047; text-shadow: 0 0 7px rgba(255, 211, 78, 0.7); }
+
+  .progress-row { background: rgba(2, 6, 23, 0.4); }
+  .progress-row-me {
+    background: rgba(8, 51, 68, 0.8);
+    border: 1px solid rgba(34, 211, 238, 0.6);
+    box-shadow: 0 0 12px rgba(24, 235, 218, 0.25);
+  }
+  .progress-name-me { color: #a5f3fc; }
+
+  .tab-inactive { color: rgba(165, 243, 252, 0.6); }
+  .tab-inactive:hover { color: #a5f3fc; }
+
+  .mode-card-active {
+    background: rgba(8, 51, 68, 0.7);
+    border-color: #67e8f9;
+    box-shadow: 0 0 18px rgba(0, 214, 255, 0.35);
+  }
+
+  .digit-slot-empty {
+    background: rgba(2, 6, 23, 0.6);
+    color: #64748b;
+    border-color: #164e63;
+  }
+
+  .digit-slot-active {
+    outline: 2px solid #5dffea;
+    outline-offset: 2px;
+    box-shadow: 0 0 18px rgba(24, 235, 218, 0.55);
+  }
+
+  .theme-switcher {
+    background: rgba(16, 9, 35, 0.72);
+    border: 1px solid rgba(24, 235, 218, 0.3);
+    box-shadow: 0 0 16px rgba(24, 235, 218, 0.14);
+  }
+
+  .theme-switcher-icon { color: #5dffea; }
+  .theme-option { color: #a78dbd; }
+  .theme-option:hover { color: #fff8ff; background: rgba(24, 235, 218, 0.12); }
+  .theme-option.is-active { color: #150522; background: linear-gradient(135deg, #5dffea, #ff9a5e); box-shadow: 0 0 14px rgba(24, 235, 218, 0.55); }
+
+  [data-game-theme='restaurant'] .neon-shell {
+    background: radial-gradient(circle at 85% 0%, rgba(211, 161, 82, 0.18), transparent 32%), linear-gradient(145deg, #fbf7ef, #f2e5d0);
+    color: #33251c;
+  }
+  [data-game-theme='restaurant'] .neon-panel {
+    background: rgba(255, 252, 246, 0.9);
+    border-color: rgba(146, 94, 44, 0.22);
+    box-shadow: 0 8px 24px rgba(104, 68, 31, 0.11), inset 0 1px rgba(255, 255, 255, 0.85);
+  }
+  [data-game-theme='restaurant'] .neon-button { background: linear-gradient(105deg, #9e642d, #c89048); border-color: #edc681; box-shadow: 0 7px 18px rgba(112, 65, 23, 0.22); }
+  [data-game-theme='restaurant'] .neon-button:hover { box-shadow: 0 8px 22px rgba(112, 65, 23, 0.3); }
+  [data-game-theme='restaurant'] .neon-button-secondary { background: #fffaf2; border-color: rgba(146, 94, 44, 0.25); color: #79502d; }
+  [data-game-theme='restaurant'] .neon-key { background: #fffdf8; border-color: rgba(146, 94, 44, 0.2); color: #3b2a20; box-shadow: 0 5px 12px rgba(91, 55, 22, 0.1); }
+  [data-game-theme='restaurant'] .neon-key-muted { background: #eadbc7; color: #b09b83; border-color: #ddc9ad; }
+  [data-game-theme='restaurant'] .neon-input { background: #fffdf8; border-color: #d6b88d; color: #3b2a20; }
+  [data-game-theme='restaurant'] .neon-input::placeholder { color: #b19b83; }
+  [data-game-theme='restaurant'] .neon-title { color: #3b281d; text-shadow: none; }
+  [data-game-theme='restaurant'] .neon-muted { color: #876e58; }
+  [data-game-theme='restaurant'] .neon-accent { color: #7a9b42; text-shadow: none; }
+  [data-game-theme='restaurant'] .neon-orange { color: #9e642d; text-shadow: none; }
+  [data-game-theme='restaurant'] .legend-bull { color: #b3324f; text-shadow: none; }
+  [data-game-theme='restaurant'] .legend-cow { color: #8a6100; text-shadow: none; }
+  [data-game-theme='restaurant'] .digit-slot-empty { background: #fffaf2; color: #b09b83; border-color: #d6b88d; }
+  [data-game-theme='restaurant'] .digit-slot-active { outline-color: #c89048; box-shadow: 0 0 0 3px rgba(200, 144, 72, 0.22); }
+  [data-game-theme='restaurant'] .on-panel { color: #3b2a20; }
+  [data-game-theme='restaurant'] .score-value { color: #9a6b00; text-shadow: none; }
+  [data-game-theme='restaurant'] .progress-row { background: rgba(146, 94, 44, 0.08); }
+  [data-game-theme='restaurant'] .progress-row-me { background: #f6e9d6; border-color: #c89048; box-shadow: none; }
+  [data-game-theme='restaurant'] .progress-name-me { color: #9e642d; }
+  [data-game-theme='restaurant'] .tab-inactive { color: #a08a72; }
+  [data-game-theme='restaurant'] .tab-inactive:hover { color: #5f422c; }
+  [data-game-theme='restaurant'] .mode-card-active { background: #f7ecdc; border-color: #c89048; box-shadow: 0 6px 16px rgba(112, 65, 23, 0.14); }
+  [data-game-theme='restaurant'] .theme-switcher { background: rgba(255, 250, 241, 0.85); border-color: rgba(146, 94, 44, 0.2); box-shadow: 0 5px 16px rgba(104, 68, 31, 0.1); }
+  [data-game-theme='restaurant'] .theme-switcher-icon { color: #9e642d; }
+  [data-game-theme='restaurant'] .theme-option { color: #9a826b; }
+  [data-game-theme='restaurant'] .theme-option:hover { color: #5f422c; background: #f4e6d2; }
+  [data-game-theme='restaurant'] .theme-option.is-active { color: #fffaf2; background: #9e642d; box-shadow: 0 4px 10px rgba(112, 65, 23, 0.24); }
+
+  [data-game-theme='cartoon'] .neon-shell {
+    background: radial-gradient(circle at 12% 0%, rgba(255, 226, 87, 0.6), transparent 27%), linear-gradient(150deg, #b8f3ff, #e5f8ff 58%, #ffd9a8);
+    color: #163b62;
+  }
+  [data-game-theme='cartoon'] .neon-panel { background: rgba(255, 255, 255, 0.84); border: 3px solid #163b62; box-shadow: 5px 6px 0 #163b62; }
+  [data-game-theme='cartoon'] .neon-button { background: linear-gradient(105deg, #ff7163, #ffb52e); border: 3px solid #163b62; box-shadow: 5px 6px 0 #163b62; }
+  [data-game-theme='cartoon'] .neon-button:hover { filter: saturate(1.16) brightness(1.06); box-shadow: 3px 4px 0 #163b62; }
+  [data-game-theme='cartoon'] .neon-button-secondary { background: #fff; border: 3px solid #163b62; color: #163b62; }
+  [data-game-theme='cartoon'] .neon-key { background: #fff; border: 3px solid #163b62; color: #163b62; box-shadow: 3px 4px 0 #163b62; }
+  [data-game-theme='cartoon'] .neon-key-muted { background: #c5d9e5; color: #7891a4; border: 3px solid #9db7c9; }
+  [data-game-theme='cartoon'] .neon-input { background: #fff; border: 3px solid #163b62; color: #163b62; }
+  [data-game-theme='cartoon'] .neon-input::placeholder { color: #88a2b7; }
+  [data-game-theme='cartoon'] .neon-title { color: #163b62; text-shadow: 2px 2px 0 #fff; }
+  [data-game-theme='cartoon'] .neon-muted { color: #426885; }
+  [data-game-theme='cartoon'] .neon-accent { color: #149b9b; text-shadow: none; }
+  [data-game-theme='cartoon'] .neon-orange { color: #e85b36; text-shadow: none; }
+  [data-game-theme='cartoon'] .legend-bull { color: #d43b52; text-shadow: none; }
+  [data-game-theme='cartoon'] .legend-cow { color: #8a6100; text-shadow: none; }
+  [data-game-theme='cartoon'] .digit-slot-empty { background: #fff; color: #9db7c9; border-color: #163b62; }
+  [data-game-theme='cartoon'] .digit-slot-active { outline: 3px solid #163b62; outline-offset: 2px; box-shadow: 4px 5px 0 #163b62; }
+  [data-game-theme='cartoon'] .on-panel { color: #163b62; }
+  [data-game-theme='cartoon'] .score-value { color: #b45309; text-shadow: none; }
+  [data-game-theme='cartoon'] .progress-row { background: rgba(22, 59, 98, 0.07); }
+  [data-game-theme='cartoon'] .progress-row-me { background: #e6f6ff; border-color: #163b62; box-shadow: none; }
+  [data-game-theme='cartoon'] .progress-name-me { color: #0b6f8f; }
+  [data-game-theme='cartoon'] .tab-inactive { color: #6b8aa3; }
+  [data-game-theme='cartoon'] .tab-inactive:hover { color: #163b62; }
+  [data-game-theme='cartoon'] .mode-card-active { background: #eaf8ff; border-color: #163b62; box-shadow: 4px 5px 0 #163b62; }
+  [data-game-theme='cartoon'] .neon-button { color: #163b62; }
+  [data-game-theme='cartoon'] .theme-switcher { background: rgba(255, 255, 255, 0.72); border: 3px solid #163b62; box-shadow: 3px 4px 0 #163b62; }
+  [data-game-theme='cartoon'] .theme-switcher-icon { color: #e85b36; }
+  [data-game-theme='cartoon'] .theme-option { color: #55748d; }
+  [data-game-theme='cartoon'] .theme-option:hover { color: #163b62; background: #d8f6ff; }
+  [data-game-theme='cartoon'] .theme-option.is-active { color: #163b62; background: #ffe35a; box-shadow: 2px 3px 0 #163b62; }
+
+  /* Плашка «Made in Bolt» рисуется только в превью/хостинге Bolt.
+     Прячем точечно по её селекторам — без глобальных правил, ломающих вёрстку. */
+  #bolt-badge,
+  .bolt-badge,
+  .__boltBadge__,
+  [data-bolt-badge],
+  iframe[src*="bolt.new"] {
+    display: none !important;
+  }
+}
+
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulseSlow 2s ease-in-out infinite;
+  }
+  .animate-bounce-slow {
+    animation: bounceSlow 1.6s ease-in-out infinite;
+  }
+  .animate-in {
+    animation: fadeInUp 0.2s ease-out;
+  }
+  /* Экран приложения: реальная высота Telegram-вьюпорта + безопасные зоны */
+  .app-screen {
+    min-height: 100dvh;
+  }
+  .pt-safe {
+    padding-top: calc(1.5rem + var(--safe-top));
+  }
+  .pb-safe {
+    padding-bottom: calc(1.5rem + var(--safe-bottom));
+  }
+}
+
+@keyframes pulseSlow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.06); opacity: 0.85; }
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
