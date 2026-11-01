@@ -39,8 +39,8 @@ export default function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
     void load();
   };
 
-  // Сортировка: самый активный = больше побед
-  const byWins = [...entries].sort((a, b) => b.wins - a.wins || b.score - a.score);
+  // Сортировка: самый активный = больше очков
+  const byWins = [...entries].sort((a, b) => b.score - a.score || b.wins - a.wins);
   // Сортировка: самый умный = больше среднего (score / wins)
   const byScore = [...entries].sort((a, b) => {
     const avgA = a.wins > 0 ? a.score / a.wins : 0;
