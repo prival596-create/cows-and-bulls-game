@@ -21,24 +21,14 @@ export async function addScoreToGlobal(username: string, points: number): Promis
     .maybeSingle();
 
   if (existing) {
-    if (points > existing.score) {
-      await supabase
-        .from('global_scores')
-        .update({
-          score: points,
-          wins: existing.wins + 1,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('username', name);
-    } else {
-      await supabase
-        .from('global_scores')
-        .update({
-          wins: existing.wins + 1,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('username', name);
-    }
+    await supabase
+      .from('global_scores')
+      .update({
+        score: existing.score + points,
+        wins: existing.wins + 1,
+        updated_at: new Date().toISOString(),
+      })
+      .eq('username', name);
   } else {
     await supabase
       .from('global_scores')

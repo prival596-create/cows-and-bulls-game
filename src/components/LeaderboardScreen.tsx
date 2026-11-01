@@ -161,12 +161,12 @@ function ActiveRow({ entry, rank }: { entry: GlobalScore; rank: number }) {
         {rank}
       </div>
       <div className="flex-1 min-w-0">
-        <p className={`font-bold text-xs truncate ${isTop ? 'text-white' : 'on-panel'}`}>{entry.username}</p>
-        <p className="neon-muted text-[10px]">{entry.wins} побед</p>
+        <p className={`font-bold text-xs truncate ${isTop ? 'text-white' : 'text-white'}`}>{entry.username}</p>
+        <p className="text-slate-400 text-[10px]">{entry.wins} побед</p>
       </div>
       <div className="flex flex-col items-end flex-shrink-0">
-        <span className="text-sm font-black score-value">{entry.score}</span>
-        <span className="text-[9px] neon-muted">очков</span>
+        <span className="text-sm font-black text-yellow-300">{entry.score}</span>
+        <span className="text-[9px] text-slate-400">очков</span>
       </div>
     </div>
   );
@@ -198,12 +198,12 @@ function SmartRow({ entry, rank }: { entry: GlobalScore; rank: number }) {
         {rank}
       </div>
       <div className="flex-1 min-w-0">
-        <p className={`font-bold text-xs truncate ${isTop ? 'text-white' : 'on-panel'}`}>{entry.username}</p>
-        <p className="neon-muted text-[10px]">{entry.wins} побед</p>
+        <p className={`font-bold text-xs truncate ${isTop ? 'text-white' : 'text-white'}`}>{entry.username}</p>
+        <p className="text-slate-400 text-[10px]">{entry.wins} побед</p>
       </div>
       <div className="flex flex-col items-end flex-shrink-0">
         <span className="text-sm font-black text-purple-300">{avgScore}</span>
-        <span className="text-[9px] neon-muted">в среднем</span>
+        <span className="text-[9px] text-slate-400">в среднем</span>
       </div>
     </div>
   );
