@@ -100,38 +100,36 @@ export default function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
           </p>
         </div>
       ) : (
-        <div className="flex-1 overflow-y-auto overscroll-contain">
-          <div className="grid grid-cols-2 gap-4">
-            {/* Колонка: Самый активный */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 mb-2">
-                <Zap className="w-4 h-4 text-yellow-300" aria-hidden="true" />
-                <h3 className="neon-accent text-sm font-bold uppercase tracking-wide">
-                  Самый активный
-                </h3>
-              </div>
-              <p className="neon-muted text-[10px] mb-2">Суммарный рейтинг</p>
-              <div className="space-y-2">
-                {byWins.slice(0, 5).map((entry, idx) => (
-                  <ActiveRow key={entry.username} entry={entry} rank={idx + 1} />
-                ))}
-              </div>
+        <div className="flex-1 grid grid-cols-2 gap-4 min-h-0">
+          {/* Колонка: Самый активный */}
+          <div className="flex flex-col overflow-y-auto overscroll-contain">
+            <div className="flex items-center gap-2 mb-2">
+              <Zap className="w-4 h-4 text-yellow-300" aria-hidden="true" />
+              <h3 className="neon-accent text-sm font-bold uppercase tracking-wide">
+                Самый активный
+              </h3>
             </div>
+            <p className="neon-muted text-[10px] mb-2">Суммарный рейтинг</p>
+            <div className="space-y-2">
+              {byWins.slice(0, 5).map((entry, idx) => (
+                <ActiveRow key={entry.username} entry={entry} rank={idx + 1} />
+              ))}
+            </div>
+          </div>
 
-            {/* Колонка: Самый умный */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 mb-2">
-                <Brain className="w-4 h-4 text-purple-300" aria-hidden="true" />
-                <h3 className="text-purple-300 text-sm font-bold uppercase tracking-wide">
-                  Самый умный
-                </h3>
-              </div>
-              <p className="neon-muted text-[10px] mb-2">Рейтинг по среднему</p>
-              <div className="space-y-2">
-                {byScore.slice(0, 5).map((entry, idx) => (
-                  <SmartRow key={entry.username} entry={entry} rank={idx + 1} />
-                ))}
-              </div>
+          {/* Колонка: Самый умный */}
+          <div className="flex flex-col overflow-y-auto overscroll-contain">
+            <div className="flex items-center gap-2 mb-2">
+              <Brain className="w-4 h-4 text-purple-300" aria-hidden="true" />
+              <h3 className="text-purple-300 text-sm font-bold uppercase tracking-wide">
+                Самый умный
+              </h3>
+            </div>
+            <p className="neon-muted text-[10px] mb-2">Рейтинг по среднему</p>
+            <div className="space-y-2">
+              {byScore.slice(0, 5).map((entry, idx) => (
+                <SmartRow key={entry.username} entry={entry} rank={idx + 1} />
+              ))}
             </div>
           </div>
         </div>
