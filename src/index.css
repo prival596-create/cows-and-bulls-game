@@ -15,24 +15,12 @@
     --tg-is-dark: 0;
   }
 
-  html {
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  body {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: auto;
+  html, body, #root {
+    height: 100%;
     background: var(--tg-bg);
     color: var(--tg-text);
     margin: 0;
     padding: 0;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
   html {
@@ -280,8 +268,7 @@
   }
   /* Экран приложения: реальная высота Telegram-вьюпорта + безопасные зоны */
   .app-screen {
-    min-height: 100vh;
-    height: auto;
+    height: 100dvh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     display: flex;

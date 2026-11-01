@@ -98,13 +98,6 @@ export function TelegramProvider({ children }: { children: ReactNode }) {
 
     webApp.ready();
     webApp.expand();
-    // Не даём случайно свернуть мини-апп вертикальным свайпом во время игры
-    webApp.disableVerticalSwipes?.();
-
-    // Разрешаем скролл в Telegram WebView
-    document.body.style.overflowY = 'auto';
-    document.body.style.webkitOverflowScrolling = 'touch';
-    document.body.style.position = 'static';
 
     const nextTheme = readTheme(webApp);
     applyThemeToCssVars(nextTheme);
