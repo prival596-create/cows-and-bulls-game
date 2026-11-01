@@ -160,7 +160,7 @@ export default function OnlineResultScreen({
   const title = isFinished ? 'Итоги игры' : myFinished ? 'Вы отгадали!' : 'Игра идёт';
 
   return (
-    <div className="neon-shell app-screen flex flex-col max-w-md mx-auto px-5 pt-safe pb-safe overflow-y-auto overscroll-contain">
+    <div className="neon-shell app-screen flex flex-col max-w-md mx-auto px-5 pt-safe pb-safe">
       <header className="flex items-center gap-3 mb-5">
         <div className="flex-1">
           <h2 className="neon-title text-xl font-black leading-tight">{title}</h2>

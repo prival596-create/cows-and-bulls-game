@@ -67,7 +67,7 @@ export default function GameScreen({
   }, [history.length]);
 
   return (
-    <div className="neon-shell app-screen flex flex-col max-w-md mx-auto px-5 pt-safe pb-safe overflow-y-auto overscroll-contain min-h-screen">
+    <div className="neon-shell app-screen flex flex-col max-w-md mx-auto px-5 pt-safe pb-safe">
       <ThemeSwitcher />
       <header className="flex items-center gap-3 mb-4">
         <button

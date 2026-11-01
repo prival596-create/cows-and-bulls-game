@@ -41,11 +41,15 @@ export default function LeaderboardScreen({ onBack }: LeaderboardScreenProps) {
 
   // Сортировка: самый активный = больше побед
   const byWins = [...entries].sort((a, b) => b.wins - a.wins || b.score - a.score);
-  // Сортировка: самый умный = больше очков
-  const byScore = [...entries].sort((a, b) => b.score - a.score || b.wins - a.wins);
+  // Сортировка: самый умный = больше среднего (score / wins)
+  const byScore = [...entries].sort((a, b) => {
+    const avgA = a.wins > 0 ? a.score / a.wins : 0;
+    const avgB = b.wins > 0 ? b.score / b.wins : 0;
+    return avgB - avgA;
+  });
 
   return (
-    <div className="neon-shell app-screen max-w-md mx-auto px-5 pt-safe pb-safe overflow-y-auto overscroll-contain min-h-screen">
+    <div className="neon-shell app-screen max-w-md mx-auto px-5 pt-safe pb-safe">
       <header className="flex items-center gap-3 mb-6">
         <button
           type="button"

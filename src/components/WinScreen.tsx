@@ -27,7 +27,7 @@ export default function WinScreen({
   };
 
   return (
-    <div className="neon-shell app-screen flex flex-col items-center justify-center max-w-md mx-auto px-6 pt-safe pb-safe overflow-y-auto overscroll-contain text-center">
+    <div className="neon-shell app-screen flex flex-col items-center justify-center max-w-md mx-auto px-6 pt-safe pb-safe text-center">
       <div
         className="w-24 h-24 rounded-3xl bg-gradient-to-br from-emerald-400 to-teal-600 shadow-2xl shadow-emerald-500/40 flex items-center justify-center mb-6 animate-bounce-slow"
       >
