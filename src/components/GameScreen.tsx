@@ -67,7 +67,7 @@ export default function GameScreen({
   }, [history.length]);
 
   return (
-    <div className="neon-shell app-screen flex flex-col max-w-md mx-auto px-5 pt-safe pb-safe overflow-hidden">
+    <div className="neon-shell app-screen flex flex-col max-w-md mx-auto px-5 pt-safe pb-safe overflow-y-auto overscroll-contain min-h-screen">
       <ThemeSwitcher />
       <header className="flex items-center gap-3 mb-4">
         <button
@@ -102,7 +102,7 @@ export default function GameScreen({
         </Legend>
       </div>
 
-      <div ref={historyRef} className="flex-1 min-h-0 overflow-y-auto overscroll-contain mb-4 -mx-1 px-1">
+      <div ref={historyRef} className="mb-4 -mx-1 px-1 overflow-y-auto overscroll-contain" style={{minHeight: '0', flex: '1 1 auto'}}>
         {history.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center py-10">
             <div className="w-14 h-14 rounded-2xl neon-panel flex items-center justify-center mb-3">

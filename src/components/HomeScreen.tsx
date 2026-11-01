@@ -42,7 +42,7 @@ export default function HomeScreen({ onStart, onLeaderboard, onOnlineSetup }: Ho
   };
 
   return (
-    <div className="neon-shell app-screen flex flex-col max-w-md mx-auto px-6 pt-safe pb-safe overflow-y-auto overscroll-contain">
+    <div className="neon-shell app-screen max-w-md mx-auto px-6 pt-safe pb-safe overflow-y-auto overscroll-contain min-h-screen">
       <ThemeSwitcher />
       
       {/* Header */}
