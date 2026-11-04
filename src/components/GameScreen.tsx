@@ -102,7 +102,7 @@ export default function GameScreen({
         </Legend>
       </div>
 
-      <div ref={historyRef} className="flex-1 min-h-0 -mx-1 px-1 overflow-y-auto overscroll-contain">
+      <div ref={historyRef} className="flex-1 min-h-0 -mx-1 px-1 overflow-y-auto overscroll-contain mb-2">
         {history.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center py-10">
             <div className="w-14 h-14 rounded-2xl neon-panel flex items-center justify-center mb-3">

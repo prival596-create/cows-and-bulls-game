@@ -27,7 +27,7 @@ export default function NumberPad({
   const isEmpty = usedDigits.size === 0;
 
   return (
-    <div className="space-y-3 select-none">
+    <div className="space-y-1.5 select-none">
       <div
         className="flex items-center justify-center gap-1 sm:gap-1.5 min-h-[2.5rem] sm:min-h-[3.25rem]"
         role="group"
@@ -64,7 +64,7 @@ export default function NumberPad({
         </p>
       )}
 
-      <div className="grid grid-cols-3 gap-2.5">
+      <div className="grid grid-cols-3 gap-1.5">
         {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((d) => {
           const disabled = usedDigits.has(d) || isFull;
           return (
@@ -74,7 +74,7 @@ export default function NumberPad({
               onClick={() => onInput(d)}
               disabled={disabled}
               aria-label={`Цифра ${d}`}
-              className={`h-12 sm:h-12 rounded-2xl text-lg sm:text-lg font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
+              className={`h-8 sm:h-12 rounded-xl sm:rounded-2xl text-sm sm:text-lg font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
                 disabled
                   ? 'neon-key-muted'
                   : 'neon-key hover:border-cyan-200'
@@ -89,20 +89,20 @@ export default function NumberPad({
           onClick={onDelete}
           disabled={usedDigits.size === 0}
           aria-label="Удалить цифру"
-          className={`h-12 sm:h-12 rounded-2xl flex items-center justify-center transition-all duration-150 active:scale-95 touch-manipulation ${
+          className={`h-8 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center transition-all duration-150 active:scale-95 touch-manipulation ${
             usedDigits.size === 0
               ? 'neon-key-muted'
               : 'neon-key hover:border-rose-300 text-rose-100'
           }`}
         >
-          <Delete className="w-6 h-6" aria-hidden="true" />
+          <Delete className="w-4 h-4 sm:w-6 sm:h-6" aria-hidden="true" />
         </button>
         <button
           type="button"
           onClick={() => onInput('0')}
           disabled={usedDigits.has('0') || isFull}
           aria-label="Цифра 0"
-          className={`h-12 sm:h-12 rounded-2xl text-lg sm:text-lg font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
+          className={`h-8 sm:h-12 rounded-xl sm:rounded-2xl text-sm sm:text-lg font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
             usedDigits.has('0') || isFull
               ? 'neon-key-muted'
               : 'neon-key hover:border-cyan-200'
@@ -114,7 +114,7 @@ export default function NumberPad({
           type="button"
           onClick={onSubmit}
           disabled={submitDisabled}
-          className={`h-12 sm:h-12 rounded-2xl text-sm sm:text-sm font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
+          className={`h-8 sm:h-12 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
             submitDisabled
               ? 'neon-key-muted'
               : 'neon-button hover:brightness-110'
