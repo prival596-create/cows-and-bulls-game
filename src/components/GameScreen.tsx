@@ -36,6 +36,7 @@ export default function GameScreen({
 }: GameScreenProps) {
   const submitDisabled = slots.some((digit) => digit === null);
   const historyRef = useRef<HTMLDivElement>(null);
+  const prevHistoryLength = useRef(history.length);
 
   // Поддержка физической клавиатуры (Telegram Desktop / веб-версия)
   useEffect(() => {
@@ -69,6 +70,16 @@ export default function GameScreen({
   return (
     <div className="neon-shell app-screen flex flex-col max-w-md mx-auto px-5 pt-safe pb-safe">
       <ThemeSwitcher />
+      <style>{`
+        @keyframes resultPulse {
+          0% { transform: scale(1); }
+          40% { transform: scale(1.08); }
+          100% { transform: scale(1); }
+        }
+        .animate-result-pulse {
+          animation: resultPulse 0.5s ease-out;
+        }
+      `}</style>
       <header className="flex items-center gap-3 flex-shrink-0">
         <button
           type="button"
@@ -114,9 +125,19 @@ export default function GameScreen({
           </div>
         ) : (
           <div className="space-y-2">
-            {history.map((row, idx) => (
-              <HistoryRow key={idx} row={row} index={history.length - idx} digits={digits} />
-            ))}
+            {history.map((row, idx) => {
+              const isNew = idx === history.length - 1 && idx === prevHistoryLength.current;
+              const isWin = row.bulls === digits;
+              return (
+                <HistoryRow
+                  key={idx}
+                  row={row}
+                  index={history.length - idx}
+                  digits={digits}
+                  isNew={isNew}
+                />
+              );
+            })}
           </div>
         )}
       </div>
@@ -151,12 +172,11 @@ function Legend({ children, className }: { children: React.ReactNode; className?
   );
 }
 
-function HistoryRow({ row, index, digits }: { row: GuessResult; index: number; digits: number }) {
+function HistoryRow({ row, index, digits, isNew }: { row: GuessResult; index: number; digits: number; isNew: boolean }) {
   const isWin = row.bulls === digits;
-  const pulseIntensity = row.bulls + row.cows > 3 ? 'animate-result-pulse' : '';
   return (
     <div
-      className={`flex items-center gap-2 p-2 rounded-lg transition ${pulseIntensity}
+      className={`flex items-center gap-2 p-2 rounded-lg transition ${isNew ? 'animate-result-pulse' : ''}
         ${
         isWin
           ? 'bg-lime-950/70 border border-lime-300/70 shadow-[0_0_16px_rgba(163,255,0,0.2)]'

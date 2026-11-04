@@ -27,12 +27,12 @@ export default function WinScreen({
   };
 
   // Генерируем частицы фейерверка
-  const particles = Array.from({ length: 30 }, (_, i) => {
-    const angle = (i / 30) * 360;
-    const distance = 80 + Math.random() * 60;
+  const particles = Array.from({ length: 40 }, (_, i) => {
+    const angle = (i / 40) * 360;
+    const distance = 120 + Math.random() * 80;
     const color = ['#5dffea', '#ff8a4c', '#fde047', '#ff8fa3', '#a78dbd'][Math.floor(Math.random() * 5)];
-    const size = 4 + Math.random() * 4;
-    const delay = Math.random() * 0.5;
+    const size = 6 + Math.random() * 6;
+    const delay = Math.random() * 0.3;
     return { angle, distance, color, size, delay };
   });
 
