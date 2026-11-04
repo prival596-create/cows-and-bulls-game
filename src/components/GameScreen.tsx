@@ -155,20 +155,20 @@ function HistoryRow({ row, index, digits }: { row: GuessResult; index: number; d
   const isWin = row.bulls === digits;
   return (
     <div
-      className={`flex items-center gap-3 p-3 rounded-xl transition ${
+      className={`flex items-center gap-2 p-2 rounded-lg transition ${
         isWin
           ? 'bg-lime-950/70 border border-lime-300/70 shadow-[0_0_16px_rgba(163,255,0,0.2)]'
           : 'neon-panel'
       }`}
     >
-      <span className="neon-muted text-xs font-semibold w-6 text-center">
+      <span className="neon-muted text-[10px] font-semibold w-5 text-center flex-shrink-0">
         {index}
       </span>
-      <div className="flex gap-1 flex-1">
+      <div className="flex gap-1 flex-1 min-w-0">
         {row.guess.split('').map((d, i) => (
           <span
             key={i}
-            className={`flex-1 min-w-0 max-w-[2rem] h-9 rounded-lg flex items-center justify-center text-base font-bold ${
+            className={`flex-1 min-w-0 max-w-[2rem] h-7 rounded-md flex items-center justify-center text-sm font-bold ${
               isWin
                 ? 'bg-gradient-to-br from-lime-300 to-emerald-600 text-slate-950 shadow-[0_0_10px_rgba(163,255,0,0.6)]'
                 : 'bg-gradient-to-br from-blue-500 to-cyan-700 text-white shadow-[0_0_8px_rgba(0,214,255,0.45)]'
@@ -178,7 +178,7 @@ function HistoryRow({ row, index, digits }: { row: GuessResult; index: number; d
           </span>
         ))}
       </div>
-      <div className="flex gap-2 flex-shrink-0">
+      <div className="flex gap-1 flex-shrink-0">
         <Badge count={row.bulls} type="bull" />
         <Badge count={row.cows} type="cow" />
       </div>
@@ -192,9 +192,9 @@ function Badge({ count, type }: { count: number; type: 'bull' | 'cow' }) {
     cow: 'bg-yellow-950/80 text-yellow-200 border border-yellow-400/50',
   };
   return (
-    <div className={`flex items-center gap-1 px-2 py-1 rounded-lg min-w-[2.5rem] justify-center ${styles[type]}`}>
-      <span className="text-sm font-bold">{count}</span>
-      <span className="text-xs font-semibold">{type === 'bull' ? 'Б' : 'К'}</span>
+    <div className={`flex items-center gap-0.5 px-1.5 py-0.5 rounded min-w-[2rem] justify-center ${styles[type]}`}>
+      <span className="text-xs font-bold">{count}</span>
+      <span className="text-[10px] font-semibold">{type === 'bull' ? 'Б' : 'К'}</span>
     </div>
   );
 }

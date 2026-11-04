@@ -74,7 +74,7 @@ export default function NumberPad({
               onClick={() => onInput(d)}
               disabled={disabled}
               aria-label={`Цифра ${d}`}
-              className={`h-8 sm:h-12 rounded-xl sm:rounded-2xl text-sm sm:text-lg font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
+              className={`h-10 sm:h-12 rounded-xl sm:rounded-2xl text-sm sm:text-lg font-bold transition-all duration-150 active:scale-95 touch-manipulation max-w-[3.5rem] sm:max-w-none mx-auto ${
                 disabled
                   ? 'neon-key-muted'
                   : 'neon-key hover:border-cyan-200'
@@ -89,20 +89,20 @@ export default function NumberPad({
           onClick={onDelete}
           disabled={usedDigits.size === 0}
           aria-label="Удалить цифру"
-          className={`h-8 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center transition-all duration-150 active:scale-95 touch-manipulation ${
+          className={`h-10 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center transition-all duration-150 active:scale-95 touch-manipulation max-w-[3.5rem] sm:max-w-none mx-auto ${
             usedDigits.size === 0
               ? 'neon-key-muted'
               : 'neon-key hover:border-rose-300 text-rose-100'
           }`}
         >
-          <Delete className="w-4 h-4 sm:w-6 sm:h-6" aria-hidden="true" />
+          <Delete className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
         </button>
         <button
           type="button"
           onClick={() => onInput('0')}
           disabled={usedDigits.has('0') || isFull}
           aria-label="Цифра 0"
-          className={`h-8 sm:h-12 rounded-xl sm:rounded-2xl text-sm sm:text-lg font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
+          className={`h-10 sm:h-12 rounded-xl sm:rounded-2xl text-sm sm:text-lg font-bold transition-all duration-150 active:scale-95 touch-manipulation max-w-[3.5rem] sm:max-w-none mx-auto ${
             usedDigits.has('0') || isFull
               ? 'neon-key-muted'
               : 'neon-key hover:border-cyan-200'
@@ -114,7 +114,7 @@ export default function NumberPad({
           type="button"
           onClick={onSubmit}
           disabled={submitDisabled}
-          className={`h-8 sm:h-12 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
+          className={`h-10 sm:h-12 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold transition-all duration-150 active:scale-95 touch-manipulation max-w-[3.5rem] sm:max-w-none mx-auto ${
             submitDisabled
               ? 'neon-key-muted'
               : 'neon-button hover:brightness-110'
