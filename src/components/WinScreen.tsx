@@ -26,18 +26,47 @@ export default function WinScreen({
     );
   };
 
+  // Генерируем частицы фейерверка
+  const particles = Array.from({ length: 30 }, (_, i) => {
+    const angle = (i / 30) * 360;
+    const distance = 80 + Math.random() * 60;
+    const color = ['#5dffea', '#ff8a4c', '#fde047', '#ff8fa3', '#a78dbd'][Math.floor(Math.random() * 5)];
+    const size = 4 + Math.random() * 4;
+    const delay = Math.random() * 0.5;
+    return { angle, distance, color, size, delay };
+  });
+
   return (
-    <div className="neon-shell app-screen flex flex-col items-center justify-center max-w-md mx-auto px-6 pt-safe pb-safe text-center">
+    <div className="neon-shell app-screen flex flex-col items-center justify-center max-w-md mx-auto px-6 pt-safe pb-safe text-center relative overflow-hidden">
+      {/* Фейерверк */}
+      <div className="absolute inset-0 pointer-events-none">
+        {particles.map((p, i) => (
+          <div
+            key={i}
+            className="absolute top-1/4 left-1/2 w-2 h-2 rounded-full animate-firework"
+            style={{
+              backgroundColor: p.color,
+              boxShadow: `0 0 6px ${p.color}`,
+              '--angle': `${p.angle}deg`,
+              '--distance': `${p.distance}px`,
+              animationDelay: `${p.delay}s`,
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+            } as React.CSSProperties}
+          />
+        ))}
+      </div>
+
       <div
-        className="w-24 h-24 rounded-3xl bg-gradient-to-br from-emerald-400 to-teal-600 shadow-2xl shadow-emerald-500/40 flex items-center justify-center mb-6 animate-bounce-slow"
+        className="w-24 h-24 rounded-3xl bg-gradient-to-br from-emerald-400 to-teal-600 shadow-2xl shadow-emerald-500/40 flex items-center justify-center mb-6 animate-bounce-slow relative z-10"
       >
         <Trophy className="w-12 h-12 text-white" fill="white" aria-hidden="true" />
       </div>
 
-      <p className="neon-muted text-sm uppercase tracking-wide mb-1">
+      <p className="neon-muted text-sm uppercase tracking-wide mb-1 relative z-10">
         Победа!
       </p>
-      <h2 className="neon-title text-3xl font-black mb-6">{winnerName}</h2>
+      <h2 className="neon-title text-3xl font-black mb-6 relative z-10">{winnerName}</h2>
 
       <div className="neon-panel w-full rounded-2xl p-5 mb-6">
         <p className="neon-muted text-xs uppercase tracking-wide mb-2">
@@ -47,7 +76,7 @@ export default function WinScreen({
           {secret.split('').map((d, i) => (
             <span
               key={i}
-              className="w-10 h-12 rounded-xl flex items-center justify-center text-2xl font-black text-white bg-gradient-to-br from-emerald-400 to-teal-600"
+              className="w-10 h-12 rounded-xl flex items-center justify-center text-2xl font-black text-white bg-gradient-to-br from-emerald-400 to-teal-600 animate-in"
             >
               {d}
             </span>

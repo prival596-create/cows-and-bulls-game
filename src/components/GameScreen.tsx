@@ -153,9 +153,11 @@ function Legend({ children, className }: { children: React.ReactNode; className?
 
 function HistoryRow({ row, index, digits }: { row: GuessResult; index: number; digits: number }) {
   const isWin = row.bulls === digits;
+  const pulseIntensity = row.bulls + row.cows > 3 ? 'animate-result-pulse' : '';
   return (
     <div
-      className={`flex items-center gap-2 p-2 rounded-lg transition ${
+      className={`flex items-center gap-2 p-2 rounded-lg transition ${pulseIntensity}
+        ${
         isWin
           ? 'bg-lime-950/70 border border-lime-300/70 shadow-[0_0_16px_rgba(163,255,0,0.2)]'
           : 'neon-panel'
