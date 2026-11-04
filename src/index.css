@@ -71,6 +71,23 @@
   [data-tg-theme='dark'] .border-slate-200 { border-color: color-mix(in srgb, var(--tg-text) 12%, transparent); }
   [data-tg-theme='dark'] .border-slate-100 { border-color: color-mix(in srgb, var(--tg-text) 8%, transparent); }
   [data-tg-theme='dark'] .bg-slate-50 { background-color: color-mix(in srgb, var(--tg-secondary-bg) 60%, var(--tg-section-bg)); }
+
+  @keyframes firework {
+    0% {
+      transform: translate(-50%, -50%) rotate(var(--angle)) translateX(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--distance)) scale(0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes resultPulse {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
 }
 
 @layer components {
@@ -266,19 +283,11 @@
   .animate-in {
     animation: fadeInUp 0.2s ease-out;
   }
-  /* Экран приложения: реальная высота Telegram-вьюпорта + безопасные зоны */
-  .app-screen {
-    height: 100dvh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    display: flex;
-    flex-direction: column;
+  .animate-firework {
+    animation: firework 1s ease-out forwards;
   }
-  .pt-safe {
-    padding-top: calc(1.5rem + var(--safe-top));
-  }
-  .pb-safe {
-    padding-bottom: calc(1.5rem + var(--safe-bottom));
+  .animate-result-pulse {
+    animation: resultPulse 0.4s ease-out;
   }
 }
 
@@ -314,10 +323,17 @@
   100% { transform: scale(1); }
 }
 
-.animate-firework {
-  animation: firework 1s ease-out forwards;
+/* Экран приложения: реальная высота Telegram-вьюпорта + безопасные зоны */
+.app-screen {
+  height: 100dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
 }
-
-.animate-result-pulse {
-  animation: resultPulse 0.4s ease-out;
+.pt-safe {
+  padding-top: calc(1.5rem + var(--safe-top));
+}
+.pb-safe {
+  padding-bottom: calc(1.5rem + var(--safe-bottom));
 }

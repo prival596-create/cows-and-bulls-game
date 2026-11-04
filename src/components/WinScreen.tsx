@@ -38,20 +38,40 @@ export default function WinScreen({
 
   return (
     <div className="neon-shell app-screen flex flex-col items-center justify-center max-w-md mx-auto px-6 pt-safe pb-safe text-center relative overflow-hidden">
+      {/* Keyframes для фейерверка */}
+      <style>{`
+        @keyframes firework {
+          0% {
+            transform: translate(-50%, -50%) rotate(var(--angle)) translateX(0) scale(1);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--distance)) scale(0);
+            opacity: 0;
+          }
+        }
+        @keyframes resultPulse {
+          0% { transform: scale(1); }
+          30% { transform: scale(1.05); }
+          100% { transform: scale(1); }
+        }
+      `}</style>
+
       {/* Фейерверк */}
       <div className="absolute inset-0 pointer-events-none">
         {particles.map((p, i) => (
           <div
             key={i}
-            className="absolute top-1/4 left-1/2 w-2 h-2 rounded-full animate-firework"
+            className="absolute top-1/4 left-1/2"
             style={{
               backgroundColor: p.color,
               boxShadow: `0 0 6px ${p.color}`,
-              '--angle': `${p.angle}deg`,
-              '--distance': `${p.distance}px`,
-              animationDelay: `${p.delay}s`,
               width: `${p.size}px`,
               height: `${p.size}px`,
+              borderRadius: '50%',
+              animation: `firework 1s ease-out ${p.delay}s forwards`,
+              '--angle': `${p.angle}deg`,
+              '--distance': `${p.distance}px`,
             } as React.CSSProperties}
           />
         ))}
