@@ -29,7 +29,7 @@ export default function NumberPad({
   return (
     <div className="space-y-3 select-none">
       <div
-        className="flex items-center justify-center gap-1 sm:gap-1.5 min-h-[3.25rem]"
+        className="flex items-center justify-center gap-1 sm:gap-1.5 min-h-[2.5rem] sm:min-h-[3.25rem]"
         role="group"
         aria-label={`Введено ${usedDigits.size} из ${digits}. Активная клетка ${cursor + 1}`}
       >
@@ -46,7 +46,7 @@ export default function NumberPad({
                   : `Клетка ${index + 1}, пусто. Нажмите, чтобы начать с неё`
               }
               aria-pressed={isActive}
-              className={`flex-1 min-w-0 max-w-[2.75rem] h-12 sm:h-[3.25rem] rounded-xl flex items-center justify-center text-lg sm:text-xl font-bold transition-all duration-150 touch-manipulation ${
+              className={`flex-1 min-w-0 max-w-[2.75rem] h-10 sm:h-[3.25rem] rounded-xl flex items-center justify-center text-base sm:text-xl font-bold transition-all duration-150 touch-manipulation ${
                 digit
                   ? 'bg-gradient-to-br from-cyan-300 to-blue-600 text-white shadow-[0_0_14px_rgba(0,214,255,0.65)]'
                   : 'digit-slot-empty border-2 border-dashed'
@@ -74,7 +74,7 @@ export default function NumberPad({
               onClick={() => onInput(d)}
               disabled={disabled}
               aria-label={`Цифра ${d}`}
-              className={`h-14 rounded-2xl text-xl font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
+              className={`h-12 sm:h-12 rounded-2xl text-lg sm:text-lg font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
                 disabled
                   ? 'neon-key-muted'
                   : 'neon-key hover:border-cyan-200'
@@ -89,7 +89,7 @@ export default function NumberPad({
           onClick={onDelete}
           disabled={usedDigits.size === 0}
           aria-label="Удалить цифру"
-          className={`h-14 rounded-2xl flex items-center justify-center transition-all duration-150 active:scale-95 touch-manipulation ${
+          className={`h-12 sm:h-12 rounded-2xl flex items-center justify-center transition-all duration-150 active:scale-95 touch-manipulation ${
             usedDigits.size === 0
               ? 'neon-key-muted'
               : 'neon-key hover:border-rose-300 text-rose-100'
@@ -102,7 +102,7 @@ export default function NumberPad({
           onClick={() => onInput('0')}
           disabled={usedDigits.has('0') || isFull}
           aria-label="Цифра 0"
-          className={`h-14 rounded-2xl text-xl font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
+          className={`h-12 sm:h-12 rounded-2xl text-lg sm:text-lg font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
             usedDigits.has('0') || isFull
               ? 'neon-key-muted'
               : 'neon-key hover:border-cyan-200'
@@ -114,7 +114,7 @@ export default function NumberPad({
           type="button"
           onClick={onSubmit}
           disabled={submitDisabled}
-          className={`h-14 rounded-2xl text-base font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
+          className={`h-12 sm:h-12 rounded-2xl text-sm sm:text-sm font-bold transition-all duration-150 active:scale-95 touch-manipulation ${
             submitDisabled
               ? 'neon-key-muted'
               : 'neon-button hover:brightness-110'

@@ -69,7 +69,7 @@ export default function GameScreen({
   return (
     <div className="neon-shell app-screen flex flex-col max-w-md mx-auto px-5 pt-safe pb-safe">
       <ThemeSwitcher />
-      <header className="flex items-center gap-3 mb-4">
+      <header className="flex items-center gap-3 flex-shrink-0">
         <button
           type="button"
           onClick={onExit}
@@ -93,7 +93,7 @@ export default function GameScreen({
 
       {liveWidget}
 
-      <div className="flex items-center gap-4 mb-3 px-1">
+      <div className="flex items-center gap-4 mb-2 px-1 flex-shrink-0">
         <Legend className="legend-bull">
           <span className="font-bold">Б</span> Бык — на своём месте
         </Legend>
@@ -102,7 +102,7 @@ export default function GameScreen({
         </Legend>
       </div>
 
-      <div ref={historyRef} className="mb-4 -mx-1 px-1 overflow-y-auto overscroll-contain" style={{minHeight: '0', flex: '1 1 auto'}}>
+      <div ref={historyRef} className="flex-1 min-h-0 -mx-1 px-1 overflow-y-auto overscroll-contain">
         {history.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center py-10">
             <div className="w-14 h-14 rounded-2xl neon-panel flex items-center justify-center mb-3">
