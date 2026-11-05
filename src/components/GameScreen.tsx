@@ -73,11 +73,11 @@ export default function GameScreen({
       <style>{`
         @keyframes resultPulse {
           0% { transform: scale(1); }
-          40% { transform: scale(1.08); }
+          40% { transform: scale(1.1); }
           100% { transform: scale(1); }
         }
         .animate-result-pulse {
-          animation: resultPulse 0.5s ease-out;
+          animation: resultPulse 0.8s ease-out;
         }
       `}</style>
       <header className="flex items-center gap-3 flex-shrink-0">

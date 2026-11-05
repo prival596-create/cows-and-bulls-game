@@ -27,11 +27,11 @@ export default function WinScreen({
   };
 
   // Генерируем частицы фейерверка
-  const particles = Array.from({ length: 40 }, (_, i) => {
-    const angle = (i / 40) * 360;
-    const distance = 120 + Math.random() * 80;
+  const particles = Array.from({ length: 50 }, (_, i) => {
+    const angle = (i / 50) * 360;
+    const distance = 160 + Math.random() * 100;
     const color = ['#5dffea', '#ff8a4c', '#fde047', '#ff8fa3', '#a78dbd'][Math.floor(Math.random() * 5)];
-    const size = 6 + Math.random() * 6;
+    const size = 8 + Math.random() * 8;
     const delay = Math.random() * 0.3;
     return { angle, distance, color, size, delay };
   });
@@ -69,7 +69,7 @@ export default function WinScreen({
               width: `${p.size}px`,
               height: `${p.size}px`,
               borderRadius: '50%',
-              animation: `firework 1s ease-out ${p.delay}s forwards`,
+              animation: `firework 2s ease-out ${p.delay}s forwards`,
               '--angle': `${p.angle}deg`,
               '--distance': `${p.distance}px`,
             } as React.CSSProperties}
